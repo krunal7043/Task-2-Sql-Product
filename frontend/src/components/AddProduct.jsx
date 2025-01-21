@@ -13,6 +13,8 @@ const AddProduct = () => {
     rating: "",
   });
 
+
+  
   const navigate = useNavigate();
 
   const handleChange = (e) => {
