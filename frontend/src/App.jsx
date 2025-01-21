@@ -1,8 +1,8 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import GetProducts from './components/GetProducts';
-import AddProduct from './components/AddProduct';
-import UpdateProduct from './components/UpdateProduct';
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import GetProducts from "./components/GetProducts";
+import AddProduct from "./components/AddProduct";
+import UpdateProduct from "./components/UpdateProduct";
 
 const App = () => {
   return (

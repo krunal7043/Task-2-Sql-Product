@@ -34,7 +34,7 @@ function DeleteProduct({ id, deleteRefresh }) {
 
       {showModal && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white rounded-lg p-6 w-96 shadow-lg">
+          <div className="bg-white rounded-lg p-3 w-96 shadow-lg">
             <p className="text-lg font-medium mb-4 text-center">
               Are you sure you want to delete this product?
             </p>

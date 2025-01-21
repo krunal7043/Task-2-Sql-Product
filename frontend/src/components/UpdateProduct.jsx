@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, useNavigate, Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const UpdateProduct = () => {
   const { id: productId } = useParams();
@@ -33,9 +34,14 @@ const UpdateProduct = () => {
       .put(`http://localhost:5000/edit/${productId}`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       })
-      .then((response) => alert(response.data))
-      .catch((error) => console.error(error));
-    navigate("/");
+      .then(() => {
+        toast.success("Product updated successfully!");
+        navigate("/");
+      })
+      .catch((error) => {
+        console.error(error);
+        toast.error("Failed to update product. Please try again.");
+      });
   };
 
   if (!product) return <p>NO Product....</p>;
