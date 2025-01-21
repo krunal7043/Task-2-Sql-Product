@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 
 const UpdateProduct = () => {
-  const { id: productId } = useParams();  
+  const { id: productId } = useParams();
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
@@ -12,6 +12,8 @@ const UpdateProduct = () => {
       .then((response) => setProduct(response.data))
       .catch((error) => console.error(error));
   }, [productId]);
+
+  const navigate = useNavigate();
 
   const handleUpdate = (e) => {
     e.preventDefault();
@@ -24,7 +26,7 @@ const UpdateProduct = () => {
     if (product.image instanceof File) {
       formData.append("image", product.image);
     } else {
-      formData.append("image", product.image); 
+      formData.append("image", product.image);
     }
 
     axios
@@ -33,83 +35,121 @@ const UpdateProduct = () => {
       })
       .then((response) => alert(response.data))
       .catch((error) => console.error(error));
+    navigate("/");
   };
 
-  if (!product) return <p>NO Product</p>;
+  if (!product) return <p>NO Product....</p>;
 
   return (
-    <div className="container">
-      <h3>Update Product</h3>
-      <form onSubmit={handleUpdate}>
-        <div>
-          <label>Name: </label>
-          <input
-            type="text"
-            value={product.name}
-            onChange={(e) =>
-              setProduct({ ...product, name: e.target.value })
-            }
-            required
-          />
-        </div>
-        <div>
-          <label>Price: </label>
-          <input
-            type="number"
-            value={product.price}
-            onChange={(e) =>
-              setProduct({ ...product, price: e.target.value })
-            }
-            required
-          />
-        </div>
-        <div>
-          <label>Category: </label>
-          <input
-            type="text"
-            value={product.category}
-            onChange={(e) =>
-              setProduct({ ...product, category: e.target.value })
-            }
-            required
-          />
-        </div>
-        <div>
-          <label>Brand: </label>
-          <input
-            type="text"
-            value={product.brand}
-            onChange={(e) =>
-              setProduct({ ...product, brand: e.target.value })
-            }
-            required
-          />
-        </div>
-        <div>
-          <label>Rating: </label>
-          <input
-            type="number"
-            step="0.1"
-            min="1"
-            max="5"
-            value={product.rating}
-            onChange={(e) =>
-              setProduct({ ...product, rating: e.target.value })
-            }
-            required
-          />
-        </div>
-        <div>
-          <label>Image: </label>
-          <input
-            type="file"
-            onChange={(e) =>
-              setProduct({ ...product, image: e.target.files[0] })
-            }
-          />
-        </div>
-        <button type="submit">Update Product</button>
-      </form>
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-lg">
+        <h3 className="text-2xl font-bold mb-6 text-center">Update Product</h3>
+        <form onSubmit={handleUpdate} className="space-y-4">
+          <div>
+            <label className="block text-gray-700 font-medium mb-2">
+              Name:{" "}
+            </label>
+            <input
+              type="text"
+              value={product.name}
+              onChange={(e) => setProduct({ ...product, name: e.target.value })}
+              required
+              className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            />
+          </div>
+          <div>
+            <label className="block text-gray-700 font-medium mb-2">
+              Price:{" "}
+            </label>
+            <input
+              type="number"
+              value={product.price}
+              onChange={(e) =>
+                setProduct({ ...product, price: e.target.value })
+              }
+              required
+              className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            />
+          </div>
+          <div>
+            <label className="block text-gray-700 font-medium mb-2">
+              Category:{" "}
+            </label>
+            <input
+              type="text"
+              value={product.category}
+              onChange={(e) =>
+                setProduct({ ...product, category: e.target.value })
+              }
+              required
+              className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            />
+          </div>
+          <div>
+            <label className="block text-gray-700 font-medium mb-2">
+              Brand:{" "}
+            </label>
+            <input
+              type="text"
+              value={product.brand}
+              onChange={(e) =>
+                setProduct({ ...product, brand: e.target.value })
+              }
+              required
+              className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            />
+          </div>
+          <div>
+            <label className="block text-gray-700 font-medium mb-2">
+              Rating:{" "}
+            </label>
+            <input
+              type="number"
+              step="0.1"
+              min="1"
+              max="5"
+              value={product.rating}
+              onChange={(e) =>
+                setProduct({ ...product, rating: e.target.value })
+              }
+              required
+              className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            />
+          </div>
+          <div>
+            <label className="block text-gray-700 font-medium mb-2">
+              Image:{" "}
+            </label>
+            <input
+              type="file"
+              onChange={(e) =>
+                setProduct({ ...product, image: e.target.files[0] })
+              }
+            />
+            {product.image && typeof product.image === "string" && (
+              <p className="text-sm text-gray-600 mt-2">
+                Current Image: {product.image}
+              </p>
+            )}
+          </div>
+          <div className="flex justify-between">
+            <button
+              type="submit"
+              className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+            >
+              Update Product
+            </button>
+            <Link to="/">
+              <button
+                type="button"
+                className="bg-gray-300 text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-400"
+              >
+                Cancel
+              </button>
+            </Link>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

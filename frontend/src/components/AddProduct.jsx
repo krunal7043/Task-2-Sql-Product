@@ -13,8 +13,6 @@ const AddProduct = () => {
     rating: "",
   });
 
-
-  
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -71,84 +69,102 @@ const AddProduct = () => {
   };
 
   return (
-    <div className="container">
-      <h1>Add New Product</h1>
-      <form onSubmit={handleSubmit} className="form">
-        <div className="form-group">
-          <label>Name:</label>
-          <input
-            type="text"
-            name="name"
-            placeholder="Enter product name"
-            value={product.name}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Price:</label>
-          <input
-            type="number"
-            name="price"
-            placeholder="Enter product price"
-            value={product.price}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Category:</label>
-          <input
-            type="text"
-            name="category"
-            placeholder="Enter product category"
-            value={product.category}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Brand:</label>
-          <input
-            type="text"
-            name="brand"
-            placeholder="Enter product brand"
-            value={product.brand}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Rating:</label>
-          <input
-            type="number"
-            name="rating"
-            placeholder="Enter product rating (1-5)"
-            value={product.rating}
-            onChange={handleChange}
-            min="1"
-            max="5"
-            step="1"
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Image:</label>
-          <input
-            type="file"
-            name="image"
-            onChange={handleFileChange}
-            accept="image/*"
-            required
-          />
-        </div>
-        <button type="submit" className="btn">
-          Add Product
-        </button>
-      </form>
-      <Link to="/">
-        <button>Cancel</button>
-      </Link>
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-lg">
+        <h1 className="text-2xl font-bold mb-6 text-center">Add New Product</h1>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label className="block text-gray-700 font-medium mb-2">Name:</label>
+            <input
+              type="text"
+              name="name"
+              placeholder="Enter product name"
+              value={product.name}
+              onChange={handleChange}
+              required
+              className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            />
+          </div>
+          <div>
+            <label className="block text-gray-700 font-medium mb-2">Price:</label>
+            <input
+              type="number"
+              name="price"
+              placeholder="Enter product price"
+              value={product.price}
+              onChange={handleChange}
+              required
+              className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            />
+          </div>
+          <div>
+            <label className="block text-gray-700 font-medium mb-2">Category:</label>
+            <input
+              type="text"
+              name="category"
+              placeholder="Enter product category"
+              value={product.category}
+              onChange={handleChange}
+              required
+              className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            />
+          </div>
+          <div>
+            <label className="block text-gray-700 font-medium mb-2">Brand:</label>
+            <input
+              type="text"
+              name="brand"
+              placeholder="Enter product brand"
+              value={product.brand}
+              onChange={handleChange}
+              required
+              className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            />
+          </div>
+          <div>
+            <label className="block text-gray-700 font-medium mb-2">Rating:</label>
+            <input
+              type="number"
+              name="rating"
+              placeholder="Enter product rating (1-5)"
+              value={product.rating}
+              onChange={handleChange}
+              min="1"
+              max="5"
+              step="0.1"
+              required
+              className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            />
+          </div>
+          <div>
+            <label className="block text-gray-700 font-medium mb-2">Image:</label>
+            <input
+              type="file"
+              name="image"
+              onChange={handleFileChange}
+              accept="image/*"
+              required
+              className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            />
+          </div>
+          <div className="flex justify-between mt-6">
+            <button
+              type="submit"
+              className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+            >
+              Add Product
+            </button>
+            <Link to="/">
+              <button
+                type="button"
+                className="bg-gray-300 text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-400"
+              >
+                Cancel
+              </button>
+            </Link>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

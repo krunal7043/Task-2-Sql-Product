@@ -19,8 +19,8 @@ const GetProducts = () => {
   useEffect(() => {
     fetchProducts();
   }, []);
-  
-// Datatable initialization
+
+  // Datatable initialization
   useEffect(() => {
     if (products.length > 0) {
       $(document).ready(function () {
@@ -68,7 +68,9 @@ const GetProducts = () => {
                     id={product.id}
                     deleteRefresh={fetchProducts}
                   />
-                  <button className="btn btn-warning">Update</button>
+                  <Link to={`/edit/${product.id}`}>
+                    <button className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-red-700 ">Update</button>
+                  </Link>
                 </td>
               </tr>
             ))}
